@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+# vi: ft=sh
+SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
+docker run -v $PWD/.test:/var/jenkins -p 8080:8080 -p 50000:50000 docker-jenkins
