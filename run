@@ -2,4 +2,12 @@
 # vi: ft=sh
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
-docker run -v $PWD/.test:/var/jenkins -p 8080:8080 -p 50000:50000 docker-jenkins
+pushd master
+docker kill jenkins-master
+docker rm -v jenkins-master
+./build
+docker run --name jenkins-master -v $PWD/.test:/var/jenkins -p 8080:8080 -p 50000:50000 -d docker-jenkins
+popd
+
+
+
