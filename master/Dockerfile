@@ -10,6 +10,13 @@ RUN mkdir -p /var/jenkins && \
     mkdir -p /var/jenkins-install && \
     curl -sSL -o /var/jenkins-install/jenkins.war $JENKINS_URL
 
+ENV DOCKER_INSTALL https://get.docker.com/builds/Linux/x86_64/docker-1.11.0.tgz
+RUN curl -o /docker.tgz "$DOCKER_INSTALL" && \
+    tar -xvf docker.tgz && \
+    rm docker.tgz
+
+ENV PATH $PATH:/docker
+
 ENV JENKINS_HOME /var/jenkins
 ENV JENKINS_SLAVE_AGENT_PORT 50000
 

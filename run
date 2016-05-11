@@ -6,7 +6,7 @@ pushd master
 docker kill jenkins-master
 docker rm -v jenkins-master
 ./build
-docker run --name jenkins-master -v $PWD/.test:/var/jenkins -p 8080:8080 -p 50000:50000 -d docker-jenkins
+docker run --name jenkins-master -v $PWD/.test:/var/jenkins -v /var/run/docker.sock:/var/run/docker.sock -p 8080:8080 -p 50000:50000 -d docker-jenkins
 popd
 
 
